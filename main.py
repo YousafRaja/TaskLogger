@@ -15,11 +15,10 @@ def write(output):
 def main():
     total = 0
     imin = 20 # interval length in minutes
-    print("Starting Logger")
+    now = datetime.now()
+    write("Started at " + now.strftime("%H:%M:%S:%D") + '\n')
     bell()
     while(True):
-        now = datetime.now()
-        write("Started at "+ now.strftime("%H:%M:%S:%D") + '\n')
         time.sleep(imin*60)
         total += 1
         now = datetime.now()
