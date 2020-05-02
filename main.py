@@ -7,19 +7,23 @@ from playsound import playsound
 def bell():
     playsound('small-bell-ring-01a.mp3')
 
+def write(output):
+    with open("TimeTracker.txt", "a") as myfile:
+        myfile.write(output)
+        myfile.close()
+
 def main():
     total = 0
     imin = 20 # interval length in minutes
     print("Starting Logger")
     bell()
     while(True):
+        now = datetime.now()
+        write("Started at "+ now.strftime("%H:%M:%S:%D") + '\n')
         time.sleep(imin*60)
         total += 1
         now = datetime.now()
-        output = "Completed "+ str(total)+ " at "+ now.strftime("%H:%M:%S") + '\n'
-        with open("TimeTracker.txt", "a") as myfile:
-            myfile.write(output)
-            myfile.close()
+        write("Completed "+ str(total)+ " at "+ now.strftime("%H:%M:%S:%D") + '\n')
         bell()
 
 
